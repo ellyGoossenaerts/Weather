@@ -17,7 +17,7 @@ public class ui {
         public static void main(String[] args) throws IOException, Exception{
             
             ForecastService service = new ForecastService();
-            City c = new City("Leuven","BE");
+            Observation c = new Observation("Leuven","BE");
             //service.getCityForecast(c);
             
             System.out.println(service.getCityForecast(c).getForcasts());

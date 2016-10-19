@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author Eline
  */
-public class City {
+public class Observation {
     
     private String cityName;
     private String countryName;
     private List<Forecast> forcasts;
     
-    public City(String cityName, String countryName){
+    public Observation(String cityName, String countryName){
         this.cityName = cityName;
         this.countryName = countryName;
         this.forcasts = new ArrayList<>();
