@@ -14,11 +14,13 @@ import org.apache.tools.ant.Main;
  */
 public class ui {
     
-        public static void main(String[] args) throws IOException{
+        public static void main(String[] args) throws IOException, Exception{
             
             ForecastService service = new ForecastService();
+            City c = new City("Leuven","BE");
+            //service.getCityForecast(c);
             
-            service.loadWeather();
+            System.out.println(service.getCityForecast(c).getForcasts());
             
         }
     
