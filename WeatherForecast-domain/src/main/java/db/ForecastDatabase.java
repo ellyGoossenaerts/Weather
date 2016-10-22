@@ -13,14 +13,16 @@ public class ForecastDatabase {
        forecastDb = new HashMap(); 
     }
     
-    public void createForecast(Forecast forecast){
-        forecastDb.put(createId(forecast.getForecastDate(), forecast.getCountryName(), forecast.getCityName()), forecast);
+    public void createForecast(List<Forecast> forecasts){
+        for(Forecast forecast: forecasts){
+            forecastDb.put(createId(forecast.getDateString(), forecast.getCountry(), forecast.getCity()), forecast);
+        }
     }
     
-    public List<Forecast> readForecast(String cityName, String cityCountry){
+    public List<Forecast> readForecast(String country, String city){
         List<Forecast> forecasts = new ArrayList();
         for(Forecast forecast: forecastDb.values()){
-            if(forecast.getCountryName().equals(cityCountry) && forecast.getCityName().equals(cityName)){
+            if(forecast.getCountry().equals(country) && forecast.getCity().equals(city)){
                 forecasts.add(forecast);
             }
         }
@@ -28,7 +30,7 @@ public class ForecastDatabase {
     }
     
     public void updateForecast(Forecast forecast){
-        forecastDb.put(createId(forecast.getForecastDate(), forecast.getCountryName(), forecast.getCityName()), forecast);
+        forecastDb.put(createId(forecast.getDateString(), forecast.getCountry(), forecast.getCity()), forecast);
     }
     
     public void deleteForecast(String forecastDate, String country, String city){

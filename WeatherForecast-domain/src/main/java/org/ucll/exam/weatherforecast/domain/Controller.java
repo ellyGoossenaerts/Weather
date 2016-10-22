@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.ucll.exam.weatherforecast.domain;
 
 import java.util.List;
@@ -39,14 +34,8 @@ public class Controller {
         this.city = city;
     }
     
-    public Observation getObservation(){
-        Observation o = new Observation(this.getCity(),this.getCountry());
-        return o;
-    }
-    
     public List<Forecast> getForecast() throws Exception{
-        //return this.service.getCurrentObservation(this.getObservation()).getForcasts();
-        return this.service.getCurrentObservation(country, city).getForcasts();
+        return this.service.getForecast(country, city);
     }
     
     public String printForecast(){
@@ -54,7 +43,7 @@ public class Controller {
         try {
             for(int i = 0; i < this.getForecast().size(); i++){
                 //out += this.getForecast().get(i).getForecastDate().toString() + "/n";
-                out += "Date: " + this.getForecast().get(i).getForecastDate() + "\n";
+                out += "Date: " + this.getForecast().get(i).getDateString()+ "\n";
                 out += "Weekday: "+this.getForecast().get(i).getWeekday() + "\n";
                 out += "Max Temp: "+ this.getForecast().get(i).getMaximumTemperature() + "\n";
                 out += "Min Temp: "+this.getForecast().get(i).getMinimumTemperature() + "\n";

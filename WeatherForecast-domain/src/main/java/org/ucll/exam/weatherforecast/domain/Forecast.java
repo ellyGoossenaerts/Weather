@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.ucll.exam.weatherforecast.domain;
 
-import java.util.Calendar;
-import java.util.Date;
 import org.joda.time.DateTime;
+
 
 /**
  *
@@ -15,35 +9,39 @@ import org.joda.time.DateTime;
  */
 public class Forecast {
     
-    private String forecastDate;
-    private String cityName;
-    private String countryName;
+    private DateTime date;
+    private String city;
+    private String country;
     private String maximumTemperature;
     private String minimumTemperature;
     private String description;
     private String icon;
-    private String weekday;
-
     
     public Forecast(){
         
     }
 
-    public Forecast(String forecastDate, String maximumTemperature, String minimumTemperature, String description, String icon, String weekday, String CountryName, String cityName) {
-        this.forecastDate = forecastDate;
-        this.maximumTemperature = maximumTemperature;
-        this.minimumTemperature = minimumTemperature;
+    public Forecast(DateTime date, String maxTemp, String minTemp, String description, String icon, String country, String city) {
+        this.date = date;
+        this.maximumTemperature = maxTemp;
+        this.minimumTemperature = minTemp;
         this.description = description;
         this.icon = icon;
-        this.weekday = weekday;
-        this.countryName = countryName;
-        this.cityName = cityName;  
+        this.country = country;
+        this.city = city;  
     }
 
-    public String getForecastDate() {
-        return forecastDate;
+    public DateTime getDate() {
+        return date;
     }
-
+    
+    public String getDateString() {
+        return date.toString("dd/MM/yyyy");
+    }
+    
+    public String getWeekday(){
+        return date.dayOfWeek().getAsText();
+    }
 
     public String getMaximumTemperature() {
         return maximumTemperature;
@@ -61,19 +59,11 @@ public class Forecast {
         return minimumTemperature;
     }
 
-    public String getWeekday() {
-        return weekday;
+    public String getCountry() {
+        return country;
     }
 
-    public void setWeekday(String weekday) {
-        this.weekday = weekday;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public String getCityName() {
-        return cityName;
+    public String getCity() {
+        return city;
     }
 }

@@ -74,7 +74,7 @@ public class OutputWeather extends JFrame {
         outputPanel.add(wIcon,gbc);
         gbc.gridx = 0;
 	gbc.gridy = 2;
-        date = new JLabel("Date: "+c.getForecast().get(0).getForecastDate());
+        date = new JLabel("Date: "+c.getForecast().get(0).getDateString());
         outputPanel.add(date,gbc);
         gbc.gridx = 0;
 	gbc.gridy = 3;
@@ -95,7 +95,7 @@ public class OutputWeather extends JFrame {
         outputPanel.add(wIcon1,gbc);
         gbc.gridx = 1;
 	gbc.gridy = 2;
-        date1 = new JLabel("Date: "+c.getForecast().get(1).getForecastDate());
+        date1 = new JLabel("Date: "+c.getForecast().get(1).getDateString());
         outputPanel.add(date1,gbc);
         gbc.gridx = 1;
 	gbc.gridy = 3;
@@ -116,7 +116,7 @@ public class OutputWeather extends JFrame {
         outputPanel.add(wIcon2,gbc);
         gbc.gridx = 2;
 	gbc.gridy = 2;
-        date2 = new JLabel("Date: "+c.getForecast().get(2).getForecastDate());
+        date2 = new JLabel("Date: "+c.getForecast().get(2).getDateString());
         outputPanel.add(date2,gbc);
         gbc.gridx = 2;
 	gbc.gridy = 3;
