@@ -17,7 +17,7 @@ public class Forecast {
     
     private String forecastDate;
     private String cityName;
-    private String cityCountry;
+    private String countryName;
     private String maximumTemperature;
     private String minimumTemperature;
     private String description;
@@ -29,14 +29,14 @@ public class Forecast {
         
     }
 
-    public Forecast(String forecastDate, String maximumTemperature, String minimumTemperature, String description, String icon, String weekday, String cityCountry, String cityName) {
+    public Forecast(String forecastDate, String maximumTemperature, String minimumTemperature, String description, String icon, String weekday, String CountryName, String cityName) {
         this.forecastDate = forecastDate;
         this.maximumTemperature = maximumTemperature;
         this.minimumTemperature = minimumTemperature;
         this.description = description;
         this.icon = icon;
         this.weekday = weekday;
-        this.cityCountry = cityCountry;
+        this.countryName = countryName;
         this.cityName = cityName;  
     }
 
@@ -69,8 +69,8 @@ public class Forecast {
         this.weekday = weekday;
     }
 
-    public String getCityCountry() {
-        return cityCountry;
+    public String getCountryName() {
+        return countryName;
     }
 
     public String getCityName() {

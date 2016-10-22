@@ -27,7 +27,7 @@ public class ObservationDatabase {
         observationDb.remove(createId(countryName, cityName));
     }
     
-    public String[] createId(String countryName, String cityName){
+    private String[] createId(String countryName, String cityName){
         String[] id = new String[2];
         id[0] = countryName;
         id[1] = cityName;

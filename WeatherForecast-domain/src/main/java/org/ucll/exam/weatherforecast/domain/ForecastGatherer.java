@@ -2,7 +2,9 @@ package org.ucll.exam.weatherforecast.domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -14,20 +16,20 @@ import javax.ws.rs.core.MediaType;
  */
 public class ForecastGatherer {
     
-    private final String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/";
+    private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/{country}/{city}.json";
+    private Map<String, Object> location;
     
     public ForecastGatherer(){
-        
+        location = new HashMap();
     }
     
-    public Observation getCurrentObservation(Observation location) throws Exception {
-        String url = this.url + "/" + location.getCountryName() + "/" + location.getCityName() + ".json";
-        
+    public Observation getCurrentObservation(Observation observation) throws Exception {
+        location.put("country", observation.getCountryName());
+        location.put("city", observation.getCityName());
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(url);
+        WebTarget target = client.target(url).resolveTemplates(location);
         ObjectMapper objectMapper = new ObjectMapper();
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
-        Observation cityresp = new Observation(location.getCountryName(), location.getCityName());
         try {
             JsonNode rootNode = objectMapper.readTree(response);
             JsonNode forecastNode = rootNode.path("forecast");
@@ -48,14 +50,14 @@ public class ForecastGatherer {
                 JsonNode conditions = actualForecast.path("conditions");
                 JsonNode icon = actualForecast.path("icon_url");
                 String forecastdate = day.intValue() + "/" + month.intValue() + "/" + year.intValue();
-                Forecast forecast = new Forecast(forecastdate, maxTemp.textValue(), minTemp.textValue(), conditions.textValue(), icon.textValue(),weekday.textValue(), location.getCountryName(), location.getCityName());
-                cityresp.addForecast(forecast);
+                Forecast forecast = new Forecast(forecastdate, maxTemp.textValue(), minTemp.textValue(), conditions.textValue(), icon.textValue(),weekday.textValue(), observation.getCountryName(), observation.getCityName());
+                observation.addForecast(forecast);
             }
 
         } catch (Exception e) {
 
         }
-        return cityresp;
+        return observation;
     }
     
 }
