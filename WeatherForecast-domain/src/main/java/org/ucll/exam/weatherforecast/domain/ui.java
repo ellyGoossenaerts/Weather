@@ -20,7 +20,7 @@ public class ui {
             Observation c = new Observation("Leuven","BE");
             //service.getCityForecast(c);
             
-            System.out.println(service.getCityForecast(c).getForcasts());
+            System.out.println(service.getCurrentObservation(c).getForcasts());
             
         }
     

@@ -45,7 +45,7 @@ public class Controller {
     }
     
     public List<Forecast> getForecast() throws Exception{
-        return this.service.getCityForecast(this.getObservation()).getForcasts();
+        return this.service.getCurrentObservation(this.getObservation()).getForcasts();
     }
     
     public String printForecast(){

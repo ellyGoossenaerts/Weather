@@ -16,6 +16,8 @@ import org.joda.time.DateTime;
 public class Forecast {
     
     private String forecastDate;
+    private String cityName;
+    private String cityCountry;
     private String maximumTemperature;
     private String minimumTemperature;
     private String description;
@@ -27,13 +29,15 @@ public class Forecast {
         
     }
 
-    public Forecast( String forecastDate, String maximumTemperature, String minimumTemperature, String description, String icon,String weekday) {
+    public Forecast(String forecastDate, String maximumTemperature, String minimumTemperature, String description, String icon, String weekday, String cityCountry, String cityName) {
         this.forecastDate = forecastDate;
         this.maximumTemperature = maximumTemperature;
         this.minimumTemperature = minimumTemperature;
         this.description = description;
         this.icon = icon;
         this.weekday = weekday;
+        this.cityCountry = cityCountry;
+        this.cityName = cityName;  
     }
 
     public String getForecastDate() {
@@ -65,13 +69,11 @@ public class Forecast {
         this.weekday = weekday;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public String getCityCountry() {
+        return cityCountry;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
 }
