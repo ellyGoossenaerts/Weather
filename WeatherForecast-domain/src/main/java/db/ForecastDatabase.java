@@ -3,11 +3,11 @@ package db;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.ucll.exam.weatherforecast.domain.Forecast;
+import domain.Forecast;
 
 public class ForecastDatabase {
     
-    private HashMap<String[], Forecast> forecastDb;
+    private HashMap<String, Forecast> forecastDb;
 
     public ForecastDatabase(){
        forecastDb = new HashMap(); 
@@ -17,6 +17,10 @@ public class ForecastDatabase {
         for(Forecast forecast: forecasts){
             forecastDb.put(createId(forecast.getDateString(), forecast.getCountry(), forecast.getCity()), forecast);
         }
+    }
+    
+    public HashMap<String, Forecast> getDb(){
+        return forecastDb;
     }
     
     public List<Forecast> readForecast(String country, String city){
@@ -37,11 +41,7 @@ public class ForecastDatabase {
         forecastDb.remove(createId(forecastDate, country, city));
     }  
     
-    private String[] createId(String forecastDate, String country, String city){
-        String[] id = new String[3];
-        id[0] = forecastDate;
-        id[1] = country;
-        id[2] = city;
-        return id;
+    private String createId(String forecastDate, String country, String city){
+        return "" + country + city + forecastDate;
     }
 }

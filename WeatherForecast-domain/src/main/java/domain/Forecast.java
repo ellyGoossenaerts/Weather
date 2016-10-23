@@ -1,5 +1,6 @@
-package org.ucll.exam.weatherforecast.domain;
+package domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import org.joda.time.DateTime;
 
 
@@ -7,9 +8,11 @@ import org.joda.time.DateTime;
  *
  * @author Eline
  */
+@XmlRootElement()
 public class Forecast {
     
     private DateTime date;
+    private String date1;
     private String city;
     private String country;
     private String maximumTemperature;
@@ -23,6 +26,16 @@ public class Forecast {
 
     public Forecast(DateTime date, String maxTemp, String minTemp, String description, String icon, String country, String city) {
         this.date = date;
+        this.maximumTemperature = maxTemp;
+        this.minimumTemperature = minTemp;
+        this.description = description;
+        this.icon = icon;
+        this.country = country;
+        this.city = city;  
+    }
+    
+      public Forecast(String date, String maxTemp, String minTemp, String description, String icon, String country, String city) {
+        this.date1 = date;
         this.maximumTemperature = maxTemp;
         this.minimumTemperature = minTemp;
         this.description = description;

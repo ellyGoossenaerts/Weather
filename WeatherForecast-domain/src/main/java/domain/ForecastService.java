@@ -1,4 +1,4 @@
-package org.ucll.exam.weatherforecast.domain;
+package domain;
 
 import db.ForecastDatabase;
 import java.util.List;
@@ -15,8 +15,8 @@ public class ForecastService {
         forecastGatherer = new ForecastGatherer();
     }
 
-    public void getCurrentObservation(String country, String city) throws Exception{
-
+    public Forecast getCurrentObservation(String country, String city) throws Exception{
+        return getForecast(country, city).get(0);
     }
     
     public List<Forecast> getForecast(String country, String city) throws Exception{
@@ -27,6 +27,10 @@ public class ForecastService {
     
     public void addForecasts(List<Forecast> forecasts){
         forecastDb.createForecast(forecasts);
+    }
+    
+    public List<Forecast> getForecasts(String country, String city){
+        return forecastDb.readForecast(country, city);
     }
     
     public void updateForecast(Forecast forecast){

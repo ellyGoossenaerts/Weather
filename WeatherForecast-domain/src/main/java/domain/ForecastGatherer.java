@@ -1,4 +1,4 @@
-package org.ucll.exam.weatherforecast.domain;
+package domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -61,10 +61,5 @@ public class ForecastGatherer {
 
         }
         return forecasts;
-    }
-    
-    public void getCurrentObservation(String observation) throws Exception {
-    
-    }
-    
+    }   
 }

@@ -1,8 +1,11 @@
-package org.ucll.exam.weatherforecast.domain;
+package controller;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import domain.Forecast;
+import domain.ForecastService;
+
 
 /**
  *
