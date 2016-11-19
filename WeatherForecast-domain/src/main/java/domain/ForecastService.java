@@ -2,20 +2,26 @@ package domain;
 
 import db.ForecastDatabase;
 import java.util.List;
+import javax.inject.Inject;
 
 
 public class ForecastService {
-
-    private final ForecastDatabase forecastDb;
-    private final ForecastGatherer forecastGatherer;
+    
+    @Inject
+    private ForecastDatabase forecastDb;
+    
+    @Inject
+    private ForecastGatherer forecastGatherer;
     
 
-    public ForecastService() {
-        forecastDb = new ForecastDatabase();
-        forecastGatherer = new ForecastGatherer();
+    public ForecastService(){
+        //forecastDb = new ForecastDatabase();
+        //forecastGatherer = new ForecastGatherer();
+        
     }
 
     public Forecast getCurrentObservation(String country, String city) throws Exception{
+        System.out.println("------------------------------------------" + forecastGatherer);
         return getForecast(country, city).get(0);
     }
     

@@ -12,21 +12,26 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import org.joda.time.DateTime;
-
 /**
  *
  * @author Elly Goossenaerts
  */
+
 public class ForecastGatherer {
     
     private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/{country}/{city}.json";
-    private Map<String, Object> location;
     
+    
+//    public ForecastGatherer(){
+//        System.out.println("Constructor");
+//        location = new HashMap();
+//    }
     public ForecastGatherer(){
-        location = new HashMap();
+        System.out.println("Contstuctor");
     }
     
     public List<Forecast> getForecast(String country, String city)throws Exception {
+        Map<String, Object> location = new HashMap();
         location.put("country", country);
         location.put("city", city);
         List<Forecast> forecasts = new ArrayList();
