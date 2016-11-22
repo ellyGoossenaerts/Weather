@@ -15,13 +15,10 @@ public class ForecastService {
     
 
     public ForecastService(){
-        //forecastDb = new ForecastDatabase();
-        //forecastGatherer = new ForecastGatherer();
-        
+        System.out.println("ForeCastService constructor");
     }
 
     public Forecast getCurrentObservation(String country, String city) throws Exception{
-        System.out.println("------------------------------------------" + forecastGatherer);
         return getForecast(country, city).get(0);
     }
     
@@ -45,10 +42,5 @@ public class ForecastService {
     
     public void deleteForecast(String forecastDate, String country, String city){
         forecastDb.deleteForecast(forecastDate, country, city);
-    }
-    
-    
-    
-
-    
+    }   
 }
