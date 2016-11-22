@@ -16,6 +16,7 @@
     <modules>
         <module>WeatherForecast-domain</module>
         <module>WeatherForecast-RestApi</module>
+        <module>WeatherForecast-ui</module>
     </modules>
     
     <dependencies>

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import domain.ForecastService;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,7 +25,7 @@ public class ForecastController {
 
     @Context
     private UriInfo context;
-    @Inject
+    @EJB
     private ForecastService service;
     @Inject
     private DateSerializer dateSerializer;

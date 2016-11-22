@@ -2,9 +2,11 @@ package domain;
 
 import db.ForecastDatabase;
 import java.util.List;
+import javax.ejb.Schedule;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-
+@Stateless
 public class ForecastService {
     
     @Inject
@@ -19,13 +21,20 @@ public class ForecastService {
     }
 
     public Forecast getCurrentObservation(String country, String city) throws Exception{
-        return getForecast(country, city).get(0);
+        return forecastGatherer.getForecast(country, city).get(0);
     }
     
     public List<Forecast> getForecast(String country, String city) throws Exception{
+        System.out.println("------------------------------------------------------------------getForecast");
         List<Forecast> forecasts = forecastGatherer.getForecast(country, city);
         addForecasts(forecasts);
         return forecasts;
+    }
+    
+    @Schedule(second ="30", persistent = false)
+    public void updateForecast() throws Exception {
+        System.out.println("------------------------------------------------------------------updateForecast");
+        //forecastGatherer.FakeforecastMethod();
     }
     
     public void addForecasts(List<Forecast> forecasts){

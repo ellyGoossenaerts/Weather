@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -17,21 +19,23 @@ import org.joda.time.DateTime;
  * @author Elly Goossenaerts
  */
 
+//@Stateless
 public class ForecastGatherer {
     
-    private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/{country}/{city}.json";
     
-    
-//    public ForecastGatherer(){
-//        System.out.println("Constructor");
-//        location = new HashMap();
-//    }
+    //private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/{country}/{city}.json";
+    private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/BE/Leuven.json";
+    Map<String, Object> location = new HashMap();
+
     public ForecastGatherer(){
-        System.out.println("Contstuctor");
+        
+    }
+    
+    public void FakeforecastMethod(){
+        System.out.println("------------------Gatherer");
     }
     
     public List<Forecast> getForecast(String country, String city)throws Exception {
-        Map<String, Object> location = new HashMap();
         location.put("country", country);
         location.put("city", city);
         List<Forecast> forecasts = new ArrayList();
