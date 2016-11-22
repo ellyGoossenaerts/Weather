@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import domain.Forecast;
 import domain.ForecastService;
+import javax.inject.Inject;
 
 
 /** 
@@ -18,7 +19,7 @@ public class Controller {
     private ForecastService service;
     
     public Controller(){
-       service = new ForecastService();
+        service = new ForecastService();
     }
 
     public void setCountry(String country) {
