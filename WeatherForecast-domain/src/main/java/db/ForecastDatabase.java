@@ -4,44 +4,49 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import domain.Forecast;
+import domain.Location;
+
 
 public class ForecastDatabase {
     
-    private HashMap<String, Forecast> forecastDb;
+    private final HashMap<String, Forecast> forecastDb;
 
     public ForecastDatabase(){
        forecastDb = new HashMap(); 
     }
     
-    public void createForecast(List<Forecast> forecasts){
+    public void createAll(List<Forecast> forecasts){
         for(Forecast forecast: forecasts){
-            forecastDb.put(createId(forecast.getDateString(), forecast.getCountry(), forecast.getCity()), forecast);
+            forecastDb.put(forecast.getId(), forecast);
         }
     }
     
-    public HashMap<String, Forecast> getDb(){
-        return forecastDb;
+    public Forecast read(Location location){
+        for(Forecast forecast: forecastDb.values()){
+            if(forecast.getLocation().equals(location) && (forecast.getDate().isEqualNow())){
+                return forecast;
+            }
+        }
+        return null;
     }
     
-    public List<Forecast> readForecast(String country, String city){
+    public List<Forecast> readAllFrom(Location location){
         List<Forecast> forecasts = new ArrayList();
         for(Forecast forecast: forecastDb.values()){
-            if(forecast.getCountry().equals(country) && forecast.getCity().equals(city)){
+            if(forecast.getLocation().equals(location) && (forecast.getDate().isEqualNow() || forecast.getDate().isAfterNow())){
                 forecasts.add(forecast);
             }
         }
         return forecasts;
     }
     
-    public void updateForecast(Forecast forecast){
-        forecastDb.put(createId(forecast.getDateString(), forecast.getCountry(), forecast.getCity()), forecast);
+    public void updateAll(List<Forecast> forecasts){
+        for(Forecast forecast: forecasts){
+            forecastDb.put(forecast.getId(), forecast);
+        }
     }
     
-    public void deleteForecast(String forecastDate, String country, String city){
-        forecastDb.remove(createId(forecastDate, country, city));
+    public void delete(String id){
+        forecastDb.remove(id);
     }  
-    
-    private String createId(String forecastDate, String country, String city){
-        return "" + country + city + forecastDate;
-    }
 }

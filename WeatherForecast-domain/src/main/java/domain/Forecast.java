@@ -11,9 +11,9 @@ import org.joda.time.DateTime;
 @XmlRootElement()
 public class Forecast {
     
+    private String id;
     private DateTime date;
-    private String city;
-    private String country;
+    private Location location;
     private String maximumTemperature;
     private String minimumTemperature;
     private String description;
@@ -23,14 +23,26 @@ public class Forecast {
         
     }
 
-    public Forecast(DateTime date, String maxTemp, String minTemp, String description, String icon, String country, String city) {
+    public Forecast(DateTime date, String maxTemp, String minTemp, String description, String icon, Location location) {
         this.date = date;
         this.maximumTemperature = maxTemp;
         this.minimumTemperature = minTemp;
         this.description = description;
         this.icon = icon;
-        this.country = country;
-        this.city = city;  
+        this.location = location;
+        setId();
+    }
+    
+    private void setId(){
+        id = location.getId() + getDateString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public DateTime getDate() {
@@ -59,13 +71,5 @@ public class Forecast {
 
     public String getMinimumTemperature() {
         return minimumTemperature;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getCity() {
-        return city;
     }
 }

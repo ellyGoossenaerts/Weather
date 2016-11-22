@@ -41,7 +41,7 @@ public class ForecastController {
     public String getObservation(@PathParam("country") String country, @PathParam("city") String city) throws Exception {
         gsonBuilder.registerTypeAdapter(DateTime.class, dateSerializer);
         Gson gson = gsonBuilder.create();
-        String json = gson.toJson(service.getCurrentObservation(country, city));
+        String json = gson.toJson(service.getForecastFrom(country, city));
         String out = "{\"Observation\":" + json + "}";
         return out;
 
@@ -53,7 +53,7 @@ public class ForecastController {
     public String getForecast(@PathParam("country") String country, @PathParam("city") String city) throws Exception {
         gsonBuilder.registerTypeAdapter(DateTime.class, dateSerializer);
         Gson gson = gsonBuilder.create();
-        String json = gson.toJson(service.getForecast(country, city));
+        String json = gson.toJson(service.getAllForecastsFrom(country, city));
         String out = "{\"Forecast\":" + json + "}";
         return out;
     }

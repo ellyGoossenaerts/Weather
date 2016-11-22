@@ -15,7 +15,7 @@ public class ui {
         public static void main(String[] args) throws IOException, Exception{
 
              ForecastService s = new ForecastService();
-             System.out.println(s.getCurrentObservation("BE", "Leuven"));
+            
              
 //  
 //            ForecastDatabase db = new ForecastDatabase();       
