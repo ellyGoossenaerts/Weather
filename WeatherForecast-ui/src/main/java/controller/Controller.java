@@ -39,7 +39,7 @@ public class Controller {
     }
     
     public List<Forecast> getForecast() throws Exception{
-        return this.service.getForecast(country, city);
+        return this.service.getAllForecastsFrom(country, city);
     }
     
     public String printForecast(){
