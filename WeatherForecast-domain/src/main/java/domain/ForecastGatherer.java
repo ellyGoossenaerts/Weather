@@ -2,15 +2,12 @@ package domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import db.ForecastDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -22,7 +19,7 @@ import org.joda.time.DateTime;
  * @author Elly Goossenaerts
  */
 
-//@Stateless
+@Stateless
 public class ForecastGatherer {
 
     private String url = "http://api.wunderground.com/api/38f8b91ec09b4d8c/forecast/q/{country}/{city}.json";

@@ -5,10 +5,11 @@ import db.LocationDatabase;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-@Stateless
+@Singleton
 public class ForecastService {
     
     @Inject
@@ -17,7 +18,7 @@ public class ForecastService {
     @Inject 
     private LocationDatabase locationDb;
     
-    @Inject
+    @EJB
     private ForecastGatherer forecastGatherer;
     
 
@@ -25,32 +26,32 @@ public class ForecastService {
         System.out.println("ForeCastService constructor");
     }
     
+    @Schedule(second ="*/30", minute="*", hour="*", persistent = false)
     public void gatherForecasts() throws Exception{
         forecastDb.updateAll(forecastGatherer.gather(getAllLocations()));
+        System.out.println("-------Forecasts: " + getAllForecasts());
     }
     
     public void gatherForecastFrom(Location location) throws Exception{
         addForecasts(forecastGatherer.gatherFrom(location));
     }
     
-    @Schedule(second ="1", persistent = false)
-    public void updateForecast() throws Exception {
-        System.out.println("------------------------------------------------------------------updateForecast");
-        //forecastGatherer.FakeforecastMethod();
-    }
-    
     public void addForecasts(List<Forecast> forecasts){
         forecastDb.createAll(forecasts);
     }
     
-    public Forecast getForecastFrom(String country, String city){
+    public Forecast getForecastFrom(String country, String city) throws Exception{
         Location location = getLocation(country, city);
         return forecastDb.read(location);
     }
     
-    public List<Forecast> getAllForecastsFrom(String country, String city){
+    public List<Forecast> getAllForecastsFrom(String country, String city) throws Exception{
         Location location = getLocation(country, city);
         return forecastDb.readAllFrom(location);
+    }
+    
+    public List<Forecast> getAllForecasts(){
+        return forecastDb.readAll();
     }
     
     public void updateForecasts(List<Forecast> forecasts){
@@ -66,10 +67,11 @@ public class ForecastService {
         gatherForecastFrom(location);
     }
     
-    public Location getLocation(String country, String city){
+    public Location getLocation(String country, String city) throws Exception{
         String id = country + city;
         Location location = locationDb.read(id);
         if(location == null) location = new Location(country, city);
+        addLocation(location);
         return location;
     }
     

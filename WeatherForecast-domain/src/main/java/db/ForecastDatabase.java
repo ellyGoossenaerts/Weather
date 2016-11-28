@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import domain.Forecast;
 import domain.Location;
+import java.util.LinkedHashMap;
 
 
 public class ForecastDatabase {
@@ -12,7 +13,7 @@ public class ForecastDatabase {
     private final HashMap<String, Forecast> forecastDb;
 
     public ForecastDatabase(){
-       forecastDb = new HashMap(); 
+       forecastDb = new LinkedHashMap(); 
     }
     
     public void createAll(List<Forecast> forecasts){
@@ -23,7 +24,7 @@ public class ForecastDatabase {
     
     public Forecast read(Location location){
         for(Forecast forecast: forecastDb.values()){
-            if(forecast.getLocation().equals(location) && (forecast.getDate().isEqualNow())){
+            if(forecast.getLocation().equals(location) && forecast.isToday()){
                 return forecast;
             }
         }
@@ -33,11 +34,15 @@ public class ForecastDatabase {
     public List<Forecast> readAllFrom(Location location){
         List<Forecast> forecasts = new ArrayList();
         for(Forecast forecast: forecastDb.values()){
-            if(forecast.getLocation().equals(location) && (forecast.getDate().isEqualNow() || forecast.getDate().isAfterNow())){
+            if(forecast.getLocation().equals(location) && (forecast.isToday() || forecast.getDate().isAfterNow())){
                 forecasts.add(forecast);
             }
         }
         return forecasts;
+    }
+    
+    public List<Forecast> readAll(){
+        return new ArrayList<Forecast>(forecastDb.values());
     }
     
     public void updateAll(List<Forecast> forecasts){

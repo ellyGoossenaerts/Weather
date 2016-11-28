@@ -1,7 +1,7 @@
 package db;
 
 import domain.Location;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,8 @@ public class LocationDatabase {
     
     public LocationDatabase(){
         locationDb = new HashMap();
+        Location loc = new Location("BE", "Leuven");
+        locationDb.put(loc.getId(), loc);
     }
     
     public void create(Location location){
@@ -27,7 +29,7 @@ public class LocationDatabase {
     }
     
     public List<Location> readAll(){
-        return (List<Location>) locationDb.values();
+        return new ArrayList(locationDb.values());
     }
     
     public void remove(String id){

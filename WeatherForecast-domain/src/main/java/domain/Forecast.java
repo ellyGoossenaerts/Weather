@@ -72,4 +72,13 @@ public class Forecast {
     public String getMinimumTemperature() {
         return minimumTemperature;
     }
+    
+    public boolean isToday(){
+        return date.getYear() == DateTime.now().getYear() && date.dayOfYear().equals(DateTime.now().dayOfYear());
+    }
+    
+    @Override
+    public String toString(){
+        return id;
+    }
 }
