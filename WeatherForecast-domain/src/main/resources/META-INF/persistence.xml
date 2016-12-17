@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<persistence>
+   <persistence-unit name="SomePUnit">
+       <provider>org.hibernate.ejb.HibernatePersistence</provider>
+       <class>myapp.MyEntity</class>
+       <properties>
+           <property name="hibernate.connection.url"
+             value="jdbc:oracle:thin:@smaug.it.uts.edu.au:1522:ell"/>
+           <property name="hibernate.connection.driver_class"
+             value="oracle.jdbc.driver.OracleDriver"/>
+           <property name="hibernate.connection.username"
+             value="user"/>
+           <property name="hibernate.connection.password"
+             value="password"/>
+       <properties>
+  </persistence-unit>
+</persistence>

@@ -34,7 +34,7 @@ public class ForecastDatabase {
     public List<Forecast> readAllFrom(Location location){
         List<Forecast> forecasts = new ArrayList();
         for(Forecast forecast: forecastDb.values()){
-            if(forecast.getLocation().equals(location) && (forecast.isToday() || forecast.getDate().isAfterNow())){
+            if(forecast.getLocation().equals(location) && (forecast.isToday() || forecast.getDatum().isAfterNow())){
                 forecasts.add(forecast);
             }
         }

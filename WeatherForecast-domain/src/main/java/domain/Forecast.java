@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.joda.time.DateTime;
 
@@ -12,7 +14,9 @@ import org.joda.time.DateTime;
 public class Forecast {
     
     private String id;
-    private DateTime date;
+    private DateTime datum;
+    private LocalDate date;
+    private LocalTime time;
     private Location location;
     private String maximumTemperature;
     private String minimumTemperature;
@@ -24,7 +28,7 @@ public class Forecast {
     }
 
     public Forecast(DateTime date, String maxTemp, String minTemp, String description, String icon, Location location) {
-        this.date = date;
+        this.datum = date;
         this.maximumTemperature = maxTemp;
         this.minimumTemperature = minTemp;
         this.description = description;
@@ -34,7 +38,7 @@ public class Forecast {
     }
     
     private void setId(){
-        id = location.getId() + getDateString();
+        id = location.getId() + datum.toString();
     }
 
     public String getId() {
@@ -45,16 +49,16 @@ public class Forecast {
         return location;
     }
 
-    public DateTime getDate() {
-        return date;
+    public DateTime getDatum() {
+        return datum;
     }
     
     public String getDateString() {
-        return date.toString("dd/MM/yyyy");
+        return datum.toString("dd/MM/yyyy");
     }
     
     public String getWeekday(){
-        return date.dayOfWeek().getAsText();
+        return datum.dayOfWeek().getAsText();
     }
 
     public String getMaximumTemperature() {
@@ -74,11 +78,21 @@ public class Forecast {
     }
     
     public boolean isToday(){
-        return date.getYear() == DateTime.now().getYear() && date.dayOfYear().equals(DateTime.now().dayOfYear());
+        return datum.getYear() == DateTime.now().getYear() && datum.dayOfYear().equals(DateTime.now().dayOfYear());
     }
     
     @Override
     public String toString(){
         return id;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+    
+    
 }
