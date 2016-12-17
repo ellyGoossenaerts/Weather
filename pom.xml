@@ -18,7 +18,9 @@
         <module>WeatherForecast-RestApi</module>
         <module>WeatherForecast-ui</module>
     <module>RaspberryPiInformation</module>
-  </modules>
+        <module>SOAProject</module>
+        <module>WeatherReport-model</module>
+    </modules>
     
     <dependencies>
     <dependency>
@@ -38,4 +40,5 @@
         <version>2.22.2</version>
     </dependency>
     </dependencies>
+    
 </project>

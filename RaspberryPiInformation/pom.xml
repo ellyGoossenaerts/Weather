@@ -11,6 +11,8 @@
     <artifactId>RaspberryPiInformation</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+   
 
     <name>RaspberryPiInformation</name>
 
@@ -31,6 +33,11 @@
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+       <groupId>com.mycompany</groupId>
+     <artifactId>WeatherReport-model</artifactId>
+     <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

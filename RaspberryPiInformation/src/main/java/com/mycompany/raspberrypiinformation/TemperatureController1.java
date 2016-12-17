@@ -6,6 +6,7 @@
 package com.mycompany.raspberrypiinformation;
 
 import com.google.gson.Gson;
+import domain.RaspberryPiGather;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
