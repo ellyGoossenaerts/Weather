@@ -5,14 +5,14 @@
  */
 package domain;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.AUTO;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 /**
  *

@@ -10,11 +10,11 @@ package domain;
  * @author Eline
  */
 import java.sql.Time;
-import java.time.Instant;
-import java.time.LocalTime;
 import java.util.Date;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import org.joda.time.Instant;
+import org.joda.time.LocalTime;
 
 @Converter(autoApply = true)
 public class LocalTimeConverter implements AttributeConverter<LocalTime, Time> {

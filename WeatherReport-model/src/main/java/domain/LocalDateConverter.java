@@ -9,11 +9,11 @@ package domain;
  *
  * @author Eline
  */
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import org.joda.time.Instant;
+import org.joda.time.LocalDate;
 
 @Converter(autoApply = true)
 public class LocalDateConverter implements AttributeConverter<LocalDate, Date> {

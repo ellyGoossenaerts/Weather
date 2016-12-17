@@ -5,8 +5,10 @@
  */
 package domain;
 
+import db.WeatherReportDB;
 import java.util.Date;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,25 +16,35 @@ import java.util.List;
  */
 public class WeatherReportService {
     
+    @Inject
+    private WeatherReportDB db;
+    
+    @Inject
+    private RaspberryPiGather gatherer;
+    
+    public WeatherReport get(long id){
+        return db.get(id);
+    }
+    
     public List<WeatherReport> getAllWeatherReports(){
-        return null;
+        return db.getAll();
     }
     
     public List<WeatherReport> getAllWeatherReportsBefore(Date date){
-        return null;
+        return db.getAllWeatherReportsBefore(date);
     }
     
     public List<WeatherReport> getAllWeatherReportsAfter(Date date){
-        return null;
+        return db.getAllWeatherReportsAfter(date);
     }
     
-    public WeatherReport getWeatherReport(){
-        return null;
+    public WeatherReport getWeatherReport() throws Exception{
+        WeatherReport report = gatherer.gatherFrom();
+        db.add(report);
+        return report;
     }
     
-    public void deleteWeatherReport(long id){
-        
-    }
-    
-    
+    public void deleteWeatherReport(WeatherReport weatherReport){
+        db.deleteWeatherReport(weatherReport);
+    }  
 }

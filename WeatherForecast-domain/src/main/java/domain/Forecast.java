@@ -1,7 +1,5 @@
 package domain;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.joda.time.DateTime;
 
@@ -15,8 +13,6 @@ public class Forecast {
     
     private String id;
     private DateTime datum;
-    private LocalDate date;
-    private LocalTime time;
     private Location location;
     private String maximumTemperature;
     private String minimumTemperature;
@@ -86,13 +82,6 @@ public class Forecast {
         return id;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
     
     
 }
