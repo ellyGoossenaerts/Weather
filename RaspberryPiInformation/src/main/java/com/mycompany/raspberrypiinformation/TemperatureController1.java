@@ -29,6 +29,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.core.SecurityContext;
 /**
  * REST Web Service
  *
@@ -58,8 +60,8 @@ public class TemperatureController1 {
     @GET
     //@Path("/getWeatherReport")
     @Produces(MediaType.APPLICATION_JSON)
-    @Compress
-    public String getWeatherReport() throws Exception {
+    //@Compress
+    public String getWeatherReport(@Context SecurityContext sc) throws Exception {
        Gson gson = new Gson();
        String json = gson.toJson(service.getWeatherReport());
        return json;
@@ -68,8 +70,9 @@ public class TemperatureController1 {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    @Compress
-    public String getAllWeatherReports() throws Exception {
+    @RolesAllowed("USER")
+    //@Compress
+    public String getAllWeatherReports(@Context SecurityContext sc) throws Exception {
         Gson gson = new Gson();
         String json = gson.toJson(service.getAllWeatherReports());
         return json;
@@ -78,8 +81,9 @@ public class TemperatureController1 {
     @GET
     @Path("/all/before/{date}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Compress
-    public String getAllWeatherReportsBefore(@PathParam("date") String date) throws Exception {
+    @RolesAllowed("USER")
+    //@Compress
+    public String getAllWeatherReportsBefore(@Context SecurityContext sc, @PathParam("date") String date) throws Exception {
         Gson gson = new Gson();
        String json = gson.toJson(service.getAllWeatherReportsBefore(toDate(date)));
        return json;
@@ -88,8 +92,9 @@ public class TemperatureController1 {
     @GET
     @Path("/all/after/{date}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Compress
-    public String getAllWeatherReportsAfter(@PathParam("date") String date) throws Exception {
+    @RolesAllowed("USER")
+    //@Compress
+    public String getAllWeatherReportsAfter(@Context SecurityContext sc, @PathParam("date") String date) throws Exception {
         Gson gson = new Gson();
         String json = gson.toJson(service.getAllWeatherReportsAfter(toDate(date)));
         return json;
@@ -97,9 +102,10 @@ public class TemperatureController1 {
     
     @DELETE
     @Path("/delete/{id}")
-    @Compress
+    @RolesAllowed("USER")
+    //@Compress
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(@PathParam("id") String id){
+    public void remove(@Context SecurityContext sc, @PathParam("id") String id){
         service.deleteWeatherReport(service.get(Long.parseLong(id)));
     }
     
