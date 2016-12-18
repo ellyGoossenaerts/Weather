@@ -81,8 +81,8 @@ public class TemperatureController1 {
     @Compress
     public String getAllWeatherReportsBefore(@PathParam("date") String date) throws Exception {
         Gson gson = new Gson();
-        String json = gson.toJson(service.getAllWeatherReportsBefore(toDate(date)));
-        return json;
+       String json = gson.toJson(service.getAllWeatherReportsBefore(toDate(date)));
+       return json;
     }
     
     @GET

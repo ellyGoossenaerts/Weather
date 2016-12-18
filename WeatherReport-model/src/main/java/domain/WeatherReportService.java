@@ -6,6 +6,7 @@
 package domain;
 
 import db.WeatherReportDB;
+import db.WeatherReportDBFactory;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -16,11 +17,11 @@ import javax.inject.Inject;
  */
 public class WeatherReportService {
     
-    @Inject
-    private WeatherReportDB db;
+    private WeatherReportDBFactory wrf = new WeatherReportDBFactory();
+    private WeatherReportDB db = wrf.createDatabase("JPA");
     
-    @Inject
-    private RaspberryPiGather gatherer;
+ 
+    private RaspberryPiGather gatherer = new RaspberryPiGather();
     
     public WeatherReport get(long id){
         return db.get(id);
@@ -30,7 +31,7 @@ public class WeatherReportService {
         return db.getAll();
     }
     
-    public List<WeatherReport> getAllWeatherReportsBefore(Date date){
+   public List<WeatherReport> getAllWeatherReportsBefore(Date date){
         return db.getAllWeatherReportsBefore(date);
     }
     

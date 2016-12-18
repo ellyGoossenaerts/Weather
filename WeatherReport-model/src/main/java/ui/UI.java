@@ -21,5 +21,9 @@ public class UI {
         
         WeatherReport w = new WeatherReport(20,"52.2",LocalDate.now(),LocalTime.now());
         db.add(w);
+         WeatherReport w1 = new WeatherReport(24,"51.2",LocalDate.now(),LocalTime.now());
+        db.add(w1);
+         WeatherReport w2 = new WeatherReport(23,"50.2",LocalDate.now(),LocalTime.now());
+        db.add(w2);
     }
 }
