@@ -41,22 +41,22 @@ public class WeatherReportDB {
     }
     
     public WeatherReport get(long id){
-        Query query = manager.createQuery("select w from Weather w where w.id = :id").setParameter("id", id);
+        Query query = manager.createQuery("select w from WeatherReport w where w.id = :id").setParameter("id", id);
         return (WeatherReport) query.getResultList().get(0);
     }
     
     public List<WeatherReport> getAll(){
-        Query query = manager.createQuery("select w from Weather w");
+        Query query = manager.createQuery("select w from WeatherReport w");
         return  query.getResultList();
     }
     
     public List<WeatherReport> getAllWeatherReportsBefore(Date date){
-        Query query = manager.createQuery("select w from Weahter w where w.date < :date").setParameter("date", date);
+        Query query = manager.createQuery("select w from WeatherReport w where w.date < :date").setParameter("date", date);
         return query.getResultList();
     }
     
     public List<WeatherReport> getAllWeatherReportsAfter(Date date){
-        Query query = manager.createQuery("select w from Weahter w where w.date > :date").setParameter("date", date);
+        Query query = manager.createQuery("select w from WeatherReport w where w.date > :date").setParameter("date", date);
         return query.getResultList();
     }
     
