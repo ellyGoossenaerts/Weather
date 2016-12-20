@@ -19,7 +19,8 @@
         <module>WeatherForecast-ui</module>
     <module>RaspberryPiInformation</module>
         <module>WeatherReport-model</module>
-    </modules>
+    <module>JavaServerFaces</module>
+  </modules>
     
     <dependencies>
     <dependency>
